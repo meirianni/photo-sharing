@@ -10,7 +10,14 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        white : "#FFFFFF",
+        hover : "#87403A",
+        main : "#994842",
+        black : "#151417"
       },
+      fontFamily : {
+        inter: ['Inter', 'sans-serif'],
+      }
     },
   },
   plugins: [],
