@@ -13,7 +13,7 @@ module.exports = {
         white : "#FFFFFF",
         hover : "#87403A",
         main : "#994842",
-        black : "#151417"
+        black : "#171614"
       },
       fontFamily : {
         inter: ['Inter', 'sans-serif'],

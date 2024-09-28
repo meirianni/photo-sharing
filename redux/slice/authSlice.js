@@ -63,4 +63,32 @@ export const postLoginUser = (data, method, link) => async (dispatch) => {
       }
 
 }  
+export const postRegisterUser = (data, method, link) => async (dispatch) => {
+    const config = {
+        method: method,
+        maxBodyLength: Infinity,
+        url: `${API_PHOTO_SHARING}/${link}`,
+        headers: {
+          'apiKey': "c7b411cc-0e7c-4ad1-aa3f-822b00e7734b",
+          'Content-Type': 'application/json',
+        },
+        data: data
+    }
+    dispatch(startAuth());
+
+    try {
+        const response = await axios(config);
+        
+        const token = response.data.token;
+        Cookies.set('token', token);
+        const data = response?.data
+        dispatch(successAuth(data));
+      } catch (error) {
+        console.log(error.response.data.message);
+        
+        dispatch(failureAuth(error.response.data.message));
+      }
+
+}  
+
 export default authSlice.reducer;

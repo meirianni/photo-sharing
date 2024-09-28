@@ -29,7 +29,7 @@ const SignIn = ()=> {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(postLoginUser(formData, "post", 'api/v1/login')).then((result) => {
+        dispatch(postLoginUser(formData, "post", 'login')).then((result) => {
             if (!result) { //klo ada eror !result.error
                 console.log("berhasill");
             //   router.push('/dashboard');
@@ -95,7 +95,11 @@ const SignIn = ()=> {
                 </div>
                 <div className="absolute bottom-32">
                     <hr className="bg-white h-0" />
-                    <h1 className="text-white mt-5 leading-3">new user ? <span className="text-main">create an account</span></h1>
+                    <h1 className="text-white mt-5 leading-3">new user ?
+                        <Link href= '/register'>
+                        <span className="text-main hover:underline"> create an account</span>
+                        </Link>
+                    </h1>
                 </div>
             </div> 
             </form>

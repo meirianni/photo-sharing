@@ -4,6 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 
 import authSlice from '../slice/authSlice';
+import uploadImageSlice from '../slice/uploadImageSlice';
 
 const API_PHOTO_SHARING = process.env.NEXT_PUBLIC_BASE_URL;
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
@@ -78,6 +79,7 @@ export const postData = (body, method, link) => async (dispatch) => {
 
 const rootReducer = combineReducers({
   storeAuth: authSlice,
+  upload: uploadImageSlice,
   // storeTwo: storeTwoReducer,
 });
 
