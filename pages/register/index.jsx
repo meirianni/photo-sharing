@@ -73,94 +73,93 @@ const Register = () => {
             <div className="flex justify-center">
                 <div className="bg-black w-5/12 h-lvh text-white font-inter">
                 <div className="flex justify-center">
-                    <h1 className="m-5 font-medium leading-relaxed text-lg	">Create Account</h1>
+                    <h1 className="m-5 font-medium leading-relaxed text-3xl">Create Account</h1>
                 </div>
                 <div className="flex justify-around">
-                    <div className="flex flex-col m-8">
+                    <div className="flex flex-col m-3">
                         <label htmlFor="">Name</label>
                         <input type="text" 
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="mt-5 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
+                        className="mt-3 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
                     </div>
-                    <div className="flex flex-col m-8">
+                    <div className="flex flex-col m-3">
                         <label htmlFor="">Username</label>
                         <input type="text" 
                          name="username"
                          value={formData.username}
                          onChange={handleChange}
-                        className="mt-5 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
+                        className="mt-3 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
                     </div>
                 </div>
                 <div className="flex justify-around">
-                    <div className="flex flex-col m-8">
+                    <div className="flex flex-col m-3">
                         <label htmlFor="">Email</label>
                         <input type="email"
                         name ="email"
                          value={formData.email}
                          onChange={handleChange}
-                        className="mt-5 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
+                        className="mt-3 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
                     </div>
-                    <div className="flex flex-col m-8">
+                    <div className="flex flex-col m-3">
                         <label htmlFor="">Phone number</label>
                         <input type="number" 
                          name = "phoneNumber"
                          value={formData.phoneNumber}
                          onChange={handleChange}
-                        className="mt-5 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
+                        className="mt-3 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
                     </div>
                 </div>
                 <div className="flex justify-around">
-                    <div className="flex flex-col m-8">
+                    <div className="flex flex-col m-3">
                         <label htmlFor="">Password</label>
                         <input type="text" 
                         name="password"
                          value={formData.password}
                          onChange={handleChange}
-                        className="mt-5 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
+                        className="mt-3 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
                     </div>
-                    <div className="flex flex-col m-8">
+                    <div className="flex flex-col m-3">
                         <label htmlFor="">Repeat Password</label>
                         <input type="text" 
                            name="passwordRepeat"
                            value={formData.passwordRepeat}
                            onChange={handleChange}
-                        className="mt-5 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
+                        className="mt-3 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
                     </div>
                 </div>
                 <div className="flex justify-around">
-                    <div className="flex flex-col m-8">
+                    <div className="flex flex-col m-3">
                         <label htmlFor="">Bio</label>
                         <input type="text" 
                          name="bio"
                          value={formData.bio}
                          onChange={handleChange}
-                        className="mt-5 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
+                        className="mt-3 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
                     </div>
-                    <div className="flex flex-col m-8">
+                    <div className="flex flex-col m-3">
                         <label htmlFor="">Website</label>
                         <input type="text" 
                            name="website"
                            value={formData.website}
                            onChange={handleChange}
-                        className="mt-5 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
+                        className="mt-3 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
                     </div>
                 </div>
-                    <div className="flex">
-                        <div className="flex flex-col m-8">
+                    <div className="flex justify-around m-8">
+                        <div className="flex flex-col">
                             <label htmlFor="">Image</label>
                             <input type="file"
                             name="profilePictureUrl"
                             onChange={handleFileChange}
-                            className="mt-5 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
+                            className="mt-3 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
                         </div>
-                        
-                        <button type="submit" onClick={submitFile}className="bg-main text-white">upload
+                        <button type="submit" onClick={submitFile}className="bg-main text-white rounded-lg h-12 hover:bg-hover p-3">upload image
                         </button>
                     </div>
-                <div className="flex items-center justify-center bg-main p-5 mt-5 hover:hover">
-                    <button type="submit">submit</button>
+                <div className="flex items-center justify-center bg-main hover:bg-hover p-3 mt-12">
+                    <button type="submit" className="text-2xl">submit</button>
                 </div>
                 </div>
             </div>
