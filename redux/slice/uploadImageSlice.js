@@ -46,8 +46,6 @@ const uploadImageSlice = createSlice({
       },
       data: data,
     };
-    
-  
     try {
       dispatch(uploadStart());
       const response = await axios(config);      

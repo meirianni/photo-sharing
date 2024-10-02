@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 
 import authSlice from '../slice/authSlice';
 import uploadImageSlice from '../slice/uploadImageSlice';
+import storySlice from '../slice/storySlice';
 
 const API_PHOTO_SHARING = process.env.NEXT_PUBLIC_BASE_URL;
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
@@ -59,7 +60,6 @@ export const { dataStart, dataSuccess, dataFailure } = dataSlice.actions;
 // Define the login action
 export const postData = (body, method, link) => async (dispatch) => {
   const config = configData(body, method, link)
-  console.log(config, "config");
   
   dispatch(dataStart());
   try {
@@ -72,7 +72,6 @@ export const postData = (body, method, link) => async (dispatch) => {
     dispatch(dataSuccess(token));
   } catch (error) {
     // console.log(error.response, "erorrr");
-    
     dispatch(dataFailure(error.response.data.message));
   }
 };
@@ -80,6 +79,7 @@ export const postData = (body, method, link) => async (dispatch) => {
 const rootReducer = combineReducers({
   storeAuth: authSlice,
   upload: uploadImageSlice,
+  story : storySlice
   // storeTwo: storeTwoReducer,
 });
 

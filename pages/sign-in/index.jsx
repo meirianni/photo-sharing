@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { postLoginUser } from '../../redux/slice/authSlice.js';
 import { postData } from '../../redux/store/store.js';
-
+import { showAlert, hideAlert } from "@/utils/actionTypes.js";
 const SignIn = ()=> {
     const [formData, setFormData] = useState({
         email: '',
@@ -15,9 +15,9 @@ const SignIn = ()=> {
     const dispatch = useDispatch();
     const router = useRouter(); // Use Next.js Router
 
-    const error = true
-    // const { data, loading, error, token } = useSelector((state) => state.storeAuth);
-    const dataAuth= useSelector((state) => state.storeAuth.data);
+    // const error = true
+    const { data, loading, error} = useSelector((state) => state.storeAuth);
+    // const dataAuth = useSelector((state) => state.storeAuth.data);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,19 +26,25 @@ const SignIn = ()=> {
           [name]: value, // Set the value of the field that changed
         }));
       };
-
+    
+    // console.log(id, "idsignin");
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(postLoginUser(formData, "post", 'login')).then((result) => {
             if (!result) { //klo ada eror !result.error
-                console.log("berhasill");
-            //   router.push('/dashboard');
+            // dispatch(showAlert({ type: 'success', message: 'Login successful!' }));
+              router.push('/home');
             } else {
-            //   console.log('Login failed:', result.payload.message);
+            //   console.log('Login failed:', );
+            dispatch(showAlert({ type: 'error', message: 'Login failed. Please÷ try again.' }));
+            setTimeout(() => dispatch(hideAlert()), 3000);
             }
           });
       };
 
+      console.log(data, "data");
+      
     // useEffect(() => {
     //     dispatch(postLoginUser(data, "post", 'api/v1/login'));
     //   }, [dispatch]);
@@ -66,26 +72,26 @@ const SignIn = ()=> {
             <form onSubmit={handleSubmit}>
             <div className="flex justify-center bg-white">
                 <div className="absolute top-1/3">
-                    <p className="text-red-500 flex flex-col justify-center items-start mx-20 mb-5">{error ? error : ''}</p>
-                    <div className="flex flex-col text-white justify-center items-start mx-24">
+                    {/* <p className="text-red-500 flex flex-col justify-center items-start mx-20 mb-5">{error ? error : ''}</p> */}
+                    <div className="flex flex-col text-white justify-center items-start mx-24 font-inter">
                             <label htmlFor="">Email</label>
                             <input 
                             type="email"
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            className="bg-transparent border-b-2 border-white focus:outline-none focus:border-black-500 text-white w-64 mt-4"
+                            className="bg-transparent rounded-lg w-64 mt-4 p-2"
                             >
                             </input>
                     </div>
-                    <div className="flex flex-col text-white justify-center items-start mx-24">
+                    <div className="flex flex-col text-white justify-center items-start mx-24 mt-3">
                             <label htmlFor="">Password</label>
                             <input 
                             type="password"
                             name="password"
                             value={formData.password}
                             onChange={handleChange}
-                            className="bg-transparent border-b-2 border-white focus:outline-none focus:border-black-500 text-white w-64 mt-4"
+                            className="bg-transparent rounded-lg w-64 mt-4 p-2"
                             >
                             </input>
                     </div>

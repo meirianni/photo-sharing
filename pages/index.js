@@ -1,8 +1,9 @@
 import Image from "next/image";
 import localFont from "next/font/local";
-import Index from "./home";
-import ListFollowers from "@/components/listFollowers";
-import Footer from "@/components/footer";
+// import Index from "./home";
+import Index from "./login";
+import ListFollowing from "@/components/listFollowing";
+// import Footer from "@/components/footer";
 import Story from "@/components/story";
 
 const geistSans = localFont({
@@ -26,10 +27,10 @@ export default function Home() {
         priority>
 
         </Image> */}
-        {/* <Index /> */}
+        <Index />
         {/* <Footer />
         <Story /> */}
-        <Index />
+        {/* <Index /> */}
     </>
   );
 }
