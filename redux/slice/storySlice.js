@@ -69,7 +69,6 @@ export const postStory = (method, link, formdata, token) => async (dispatch) => 
     },
     data : formdata
   }
-  
   dispatch(startData());
   try {
     const response = await axios(config);

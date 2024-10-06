@@ -30,7 +30,7 @@ const Navbar = () => {
         <div className="navbar flex justify-around items-center p-2">
                     <div className="flex flex-row items-center hover:bg-grey hover:rounded-lg">
                         <img className="w-8 h-8 md:w-7 md:h-7 sm:h-7 sm:w-7 m-1"
-                        src="img/home.png" alt="" />
+                        src="img/home.png" alt=""/>
                         <p className="text-xl ml-3 hidden md:block sm:hidden">Home</p>
                     </div>
                     <div className="flex flex-row items-center hover:bg-grey hover:rounded-lg">
