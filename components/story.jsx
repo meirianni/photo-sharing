@@ -82,10 +82,10 @@ const Story = () => {
       
     return (
         <>
-        <div className="flex flex-col w-3/6">
-            <div className="flex flex-row justify-start items-start 
+        <div className="flex flex-col w-3/6 mt-5">
+            <div className="flex flex-row justify-start items-center 
             mt-16 sm:mt-2">
-                <div className="relative inline-block flex-col items-center ml-5">
+                <div className="relative  flex-col items-center ml-5 z-5">
                     <img src={users.profilePictureUrl} alt="" 
                     className="h-16 rounded-full w-16"/>
 
@@ -133,13 +133,9 @@ const Story = () => {
                     <div className="items-start mt-1">
                         <p className=" text-xs font-medium">Chdcdarlie</p>
                     </div>
-                </div> 
-
-            
-    
-
-                
+                </div>  
             </div>
+            <hr className ="w-full"/>
 
             <div className="mt-2  h-full">
                     <ExplorePost />

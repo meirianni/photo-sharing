@@ -60,9 +60,8 @@ export const postLoginUser = (data, method, link) => async (dispatch) => {
         Cookies.set('token', token);
         const data = response?.data?.user
         const userId = response?.data?.user.id
-        console.log(userId, "userId");
-        
         Cookies.set('userId', userId);
+        
         dispatch(successAuth(data));
       } catch (error) {
         
@@ -93,7 +92,6 @@ export const postRegisterUser = (data, method, link) => async (dispatch) => {
         // Cookies.set('userId', userId);
         dispatch(successAuth(data));
       } catch (error) {
-        console.log("errr", error);
         
         dispatch(failureAuth(error.response.data));
       }
@@ -134,6 +132,8 @@ export const getData = (method, link, token) => async (dispatch) => {
       'Authorization' :`Bearer ${token}`
     }
   }
+  console.log(config, "configgg");
+  
   dispatch(startAuth());
   try {
     const response = await axios(config);

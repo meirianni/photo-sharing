@@ -18,6 +18,8 @@ module.exports = {
       },
       fontFamily : {
         inter: ['Inter', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        bounce: ["Birthstone Bounce", 'cursive'],
       },
       images: {
         domains: ['images.unsplash.com']

@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import { uploadImage } from "@/redux/slice/uploadImageSlice";
 import { useDispatch, useSelector } from 'react-redux';
 import { postRegisterUser } from "@/redux/slice/authSlice";
+import { useRouter } from "next/router";
 
 const Register = () => {
     const dispatch = useDispatch();
+    const router = useRouter()
     const token = getToken();
     const [file, setFile] = useState(null);
     const [formData,setFormData] = useState({
@@ -19,37 +21,36 @@ const Register = () => {
             bio: '',
             website: ''
     })
-    const { loading, error, uploadResponse } = useSelector((state) => state.upload);
+    // const { loading, error, uploadResponse } = useSelector((state) => state.upload);
+    const { data, loading, error } = useSelector((state) => state.storeAuth);
+    console.log(data, "data");
     
-   
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
     };
-
-   
-    const submitFile = async(e) => {
-        e.preventDefault();
-        if (file) {
-            try {
-                await dispatch(uploadImage(file, 'upload-image', token))
+    // const submitFile = async(e) => {
+    //     e.preventDefault();
+    //     if (file) {
+    //         try {
+    //             await dispatch(uploadImage(file, 'upload-image', token))
                 
-                // setFormData((prev) => ({
-                //     ...prev,
-                //     profilePictureUrl : coba
-                // }))
-            } catch (error) {
-                console.error('Upload failed:', error);
-            }
+    //             // setFormData((prev) => ({
+    //             //     ...prev,
+    //             //     profilePictureUrl : coba
+    //             // }))
+    //         } catch (error) {
+    //             console.error('Upload failed:', error);
+    //         }
             
-        }
-      };
+    //     }
+    //   };
       
     const handleChange = (e) => {
         const {name, value} = e.target
         setFormData((prev) => ({
             ...prev,
             [name] : value,
-            profilePictureUrl: uploadResponse,
+            // profilePictureUrl: uploadResponse,
         }))
      }
      
@@ -57,25 +58,32 @@ const Register = () => {
         e.preventDefault();
         // console.log(formData, "formm");
         dispatch(postRegisterUser(formData, "post",'register')).then((result) => {
+            
+            
             if (!result) { //klo ada eror !result.error
-                console.log("berhasill");
-            //   router.push('/dashboard');
+              router.push('/home');
+            console.log(result, "result");
             } else {
             //   console.log('Login failed:', result.payload.message);
             }
-        })
-        
-        
+        })   
     }
+    console.log(error, "error");
+    
+
+    
     return (
         <>
         <form onSubmit={handleSubmit}>
             <div className="flex justify-center">
-                <div className="bg-black w-5/12 h-lvh text-white font-inter">
-                <div className="flex justify-center">
-                    <h1 className="m-5 font-medium leading-relaxed text-3xl">Create Account</h1>
+                <div className="bg-black w-5/12 h-lvh text-white">
+                <div className="flex justify-center items-center mt-10 ">
+                    <h1 className="m-5 font-base leading-relaxed text-3xl ">Create Account</h1>
+                    <div className="bg-white w-4 h-4 rounded-full flex items-center justify-center">
+                        <img className="w-3 h-3" src="/img/logo.png" alt="" />
+                        </div>
                 </div>
-                <div className="flex justify-around">
+                <div className="flex justify-around mt-18">
                     <div className="flex flex-col m-3">
                         <label htmlFor="">Name</label>
                         <input type="text" 
@@ -147,7 +155,7 @@ const Register = () => {
                         className="mt-3 bg-transparent text-white  border-white focus:outline-none border-b-2"/>
                     </div>
                 </div>
-                    <div className="flex justify-around m-8">
+                    {/* <div className="flex justify-around m-8">
                         <div className="flex flex-col">
                             <label htmlFor="">Image</label>
                             <input type="file"
@@ -157,7 +165,7 @@ const Register = () => {
                         </div>
                         <button type="submit" onClick={submitFile}className="bg-main text-white rounded-lg h-12 hover:bg-hover p-3">upload image
                         </button>
-                    </div>
+                    </div> */}
                 <div className="flex items-center justify-center bg-main hover:bg-hover p-3 mt-12">
                     <button type="submit" className="text-2xl">submit</button>
                 </div>
