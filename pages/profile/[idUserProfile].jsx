@@ -8,7 +8,25 @@ import love from "../../public/img/love.png"
 import ModalPost from '@/components/modalPost';
 import Cookies from 'js-cookie';
 import { ErrorAlert } from '@/utils/alert';
+import { getCookie } from 'cookies-next';
 
+export const getServerSideProps = ({ req, res }) => {
+  const token = getCookie('token', { req, res });
+
+  
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {}, // pass any required props here
+  };
+};
 const UserProfile = () => {
   const router = useRouter();
   const token = getToken()

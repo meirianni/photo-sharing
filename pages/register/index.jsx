@@ -14,7 +14,7 @@ const Register = () => {
             name: '',
             username: '',
             email: '',
-            password: '',
+            // password: '',
             passwordRepeat: '',
             profilePictureUrl: '',
             phoneNumber: '',
@@ -23,7 +23,7 @@ const Register = () => {
     })
     // const { loading, error, uploadResponse } = useSelector((state) => state.upload);
     const { data, loading, error } = useSelector((state) => state.storeAuth);
-    console.log(data, "data");
+    console.log(data, "data", error, "error");
     
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -56,19 +56,21 @@ const Register = () => {
      
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(formData, "formm");
-        dispatch(postRegisterUser(formData, "post",'register')).then((result) => {
+        try {
+            dispatch(postRegisterUser(formData, "post",'register')).then((result) => {
+                if (!result) {
+                  router.push('/home');
+                } else if (result.payload && result.payload.message) {
+                    router.push('/');
+                }
+            })  
             
-            
-            if (!result) { //klo ada eror !result.error
-              router.push('/home');
-            console.log(result, "result");
-            } else {
-            //   console.log('Login failed:', result.payload.message);
-            }
-        })   
+        } catch (error) {
+            console.log(result.payload && result.payload.message, "meii");
+        }
+        
     }
-    console.log(error, "error");
+ 
     
 
     
@@ -122,7 +124,7 @@ const Register = () => {
                 <div className="flex justify-around">
                     <div className="flex flex-col m-3">
                         <label htmlFor="">Password</label>
-                        <input type="text" 
+                        <input type="password" 
                         name="password"
                          value={formData.password}
                          onChange={handleChange}
@@ -130,7 +132,7 @@ const Register = () => {
                     </div>
                     <div className="flex flex-col m-3">
                         <label htmlFor="">Repeat Password</label>
-                        <input type="text" 
+                        <input type="password" 
                            name="passwordRepeat"
                            value={formData.passwordRepeat}
                            onChange={handleChange}

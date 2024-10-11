@@ -98,30 +98,7 @@ export const postRegisterUser = (data, method, link) => async (dispatch) => {
 
 } 
 
-// export const getDataUser = (method, link, token) => async (dispatch, getState) => {
-//   const { id } = getState().storeAuth;
-  
-//   const config = {
-//     method: method,
-//     maxBodyLength: Infinity,
-//     url: `${API_PHOTO_SHARING}/${link}/id`,
-//     headers: {
-//       'apiKey': "c7b411cc-0e7c-4ad1-aa3f-822b00e7734b",
-//       'Authorization' :`Bearer ${token}`
-//     }
-  // }
-  
-  
-//   dispatch(startAuth());
-//   try {
-//     const response = await axios(config);
-//     const data = response?.data?.data?.users
-    
-//     dispatch(successAuth(data));
-//   } catch (error) {
-//     dispatch(failureAuth(error.response.data));
-//   }
-// // }
+
 export const getData = (method, link, token) => async (dispatch) => {
   const config = {
     method: method,
