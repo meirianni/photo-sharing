@@ -21,7 +21,6 @@ const Navbar = () => {
             setIsClient(true);
             dispatch(getData("get", `user/${userId}`, token));
     },[dispatch, userId, token]);
-console.log(data, "data");
 
    
     useEffect(() => {
@@ -63,7 +62,11 @@ console.log(data, "data");
                     </div>
                     <div className="flex flex-row items-center hover:bg-grey hover:rounded-lg">
                         <img className="rounded-full w-8 h-8 md:w-7 md:h-7 sm:h-7 sm:w-7 m-1"
-                        src={data.profilePictureUrl} alt="Profil" />
+                        src={data.profilePictureUrl} alt="Profil"
+                        onError={(e) => {
+                            e.target.onerror = null; // Prevents looping
+                            e.target.src = 'https://images.unsplash.com/photo-1695669882447-1de80022ff21?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8anVzdGluJTIwYmllYmVyfGVufDB8fDB8fHww'; // Set a fallback image
+                        }} />
                         {/* <p className="text-xl ml-3">Profil</p> */}
                     </div>
                 </div>
@@ -112,7 +115,11 @@ console.log(data, "data");
                 <Link href={`/profile/${userId}`}>
                 <div className="flex flex-row items-center hover:bg-grey hover:rounded-lg p-2 mr-3 mt-3">
                     <img className="rounded-full w-7 h-7"
-                    src={data.profilePictureUrl}  alt="Profil" />
+                    src={data.profilePictureUrl}  alt="Profil" 
+                    onError={(e) => {
+                        e.target.onerror = null; // Prevents looping
+                        e.target.src = 'https://images.unsplash.com/photo-1695669882447-1de80022ff21?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8anVzdGluJTIwYmllYmVyfGVufDB8fDB8fHww'; // Set a fallback image
+                    }}/>
                     <p className="text-xl ml-3 hidden md:block sm:hidden">Profil</p>
                 </div>
                 </Link>

@@ -27,9 +27,6 @@ const Home = () => {
         <div className="flex">
         <Navbar/>
         <Story />
-        {/* <ExplorePost />s */}
-        {/* <ListFollowing />
-        <Story /> */}
         </div>
         </>
     )

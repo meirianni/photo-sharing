@@ -60,12 +60,11 @@ const ModalPost = ({isVisible, onClose, post }) => {
         }  
       };
 
-      console.log(errorMessage, "errorMessage", isSuccess);
       
     return (  
       <>
-              {/* {isSuccess &&   <p>mooooooo</p>} */}
-              {/* {errorMessage && <ErrorAlert message={typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage)} />} */}
+              {isSuccess &&   <p>mooooooo</p>}
+              {errorMessage && <ErrorAlert message={typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage)} />}
         <div className="fixed inset-0 bg-gray-300 bg-opacity-50 flex items-center justify-center">
           
           <div ref={popupRef} className="relative bg-main p-8 rounded-lg shadow-lg w-5/6 mx-auto  ">

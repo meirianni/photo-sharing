@@ -4,46 +4,31 @@ import { uploadImage } from "@/redux/slice/uploadImageSlice";
 import { useDispatch, useSelector } from 'react-redux';
 import { postRegisterUser } from "@/redux/slice/authSlice";
 import { useRouter } from "next/router";
-
+import { ErrorAlert, SuccessAlert } from "@/utils/alert";
+import { PostDataLogin } from "@/utils/api";
 const Register = () => {
     const dispatch = useDispatch();
     const router = useRouter()
     const token = getToken();
     const [file, setFile] = useState(null);
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null);
+    
     const [formData,setFormData] = useState({
             name: '',
             username: '',
             email: '',
-            // password: '',
+            password: '',
             passwordRepeat: '',
             profilePictureUrl: '',
             phoneNumber: '',
             bio: '',
             website: ''
     })
-    // const { loading, error, uploadResponse } = useSelector((state) => state.upload);
-    const { data, loading, error } = useSelector((state) => state.storeAuth);
-    console.log(data, "data", error, "error");
     
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
     };
-    // const submitFile = async(e) => {
-    //     e.preventDefault();
-    //     if (file) {
-    //         try {
-    //             await dispatch(uploadImage(file, 'upload-image', token))
-                
-    //             // setFormData((prev) => ({
-    //             //     ...prev,
-    //             //     profilePictureUrl : coba
-    //             // }))
-    //         } catch (error) {
-    //             console.error('Upload failed:', error);
-    //         }
-            
-    //     }
-    //   };
       
     const handleChange = (e) => {
         const {name, value} = e.target
@@ -53,29 +38,27 @@ const Register = () => {
             // profilePictureUrl: uploadResponse,
         }))
      }
-     
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        try {
-            dispatch(postRegisterUser(formData, "post",'register')).then((result) => {
-                if (!result) {
-                  router.push('/home');
-                } else if (result.payload && result.payload.message) {
-                    router.push('/');
-                }
-            })  
-            
+    const handleSubmit =  async (e) => {
+        try {            
+            e.preventDefault();
+            await PostDataLogin("post", "register",formData )
+            setIsSuccess(true);
+            setTimeout(() => {
+                setIsSuccess(false);
+            }, 3000);
         } catch (error) {
-            console.log(result.payload && result.payload.message, "meii");
+            const message = error.response?.data?.message || "An error occurred, please try again!";
+            setErrorMessage(message); // Set the custom error message
+            setTimeout(() => {
+                setErrorMessage(null);
+            }, 2000);
         }
-        
     }
- 
-    
 
-    
     return (
         <>
+        {errorMessage && <ErrorAlert message={typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage)} />}
+        {isSuccess && <SuccessAlert />}
         <form onSubmit={handleSubmit}>
             <div className="flex justify-center">
                 <div className="bg-black w-5/12 h-lvh text-white">
@@ -167,7 +150,7 @@ const Register = () => {
                         </div>
                         <button type="submit" onClick={submitFile}className="bg-main text-white rounded-lg h-12 hover:bg-hover p-3">upload image
                         </button>
-                    </div> */}
+                    </handleSubmit> */}
                 <div className="flex items-center justify-center bg-main hover:bg-hover p-3 mt-12">
                     <button type="submit" className="text-2xl">submit</button>
                 </div>

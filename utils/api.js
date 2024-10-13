@@ -11,16 +11,10 @@ const API_KEY = ENV.API_KEY
 
 export const handleError = (error) => {
   if (error.response) {
-    // Server responded with a status code other than 2xx
-    console.error(`Error: ${error.response.status} - ${error.response.data.message}`);
     return error.response.data.message || 'Something went wrong on the server!';
   } else if (error.request) {
-    // Request was made, but no response was received
-    console.error('Error: No response from the server.');
     return 'No response from the server. Please try again later.';
   } else {
-    // Something else happened during the request
-    console.error(`Error: ${error.message}`);
     return error.message || 'An unexpected error occurred.';
   }
 };
@@ -58,19 +52,16 @@ export const getDataApi = async (method, link, token) => {
         },
         data: formdata
     };
-    console.log(config, "config");
     
     
     try {
-        const response = await axios(config);
+        const response = await axios(config); 
+        
         return response?.data;
-    } catch (error) {
-      console.log(error, "error");
-      
+    } catch (error) {      
       if (error.response) {
-        console.error('Error response:', error.response);
       } else {
-        console.error('Error:', error.message);
+        throw error;
       }
       throw error;
     }
@@ -89,10 +80,31 @@ export const getDataApi = async (method, link, token) => {
       }  
     try {
       const response = await axios(config);
+      
       return response?.data
     } catch (error) {      
-      // handleError(error);
       throw error;
-      // return error.response.data.message
+    }
+  };
+  export const PostImage =  async (file, link, token) => {
+    let data = new FormData();
+    data.append('image', file);
+  
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: `${API_BASE_URL}/${link}`,
+      headers: { 
+        'apiKey': API_KEY, 
+        'Authorization': `Bearer ${token}`, 
+        ...data
+      },
+      data: data,
+    };
+    try {
+      const response = await axios(config);
+      return response?.data
+    } catch (error) {
+      throw error;
     }
   };

@@ -14,7 +14,10 @@ module.exports = {
         hover : "#87403A",
         main : "#994842",
         black : "#171614",
-        grey : "#E8EAED"
+        grey : "#E8EAED",
+        blue: "#77CDFF",
+        blue2 : "#0D92F4",
+        red : '#C62E2E'
       },
       fontFamily : {
         inter: ['Inter', 'sans-serif'],
